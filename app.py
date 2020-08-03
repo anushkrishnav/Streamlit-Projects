@@ -3,7 +3,7 @@ import src.pages.Uber as Uber
 import src.pages.UsedCarPrice as Price
 import src.pages.Home as Home
 
-PAGES={'Home':Home,'Uber':Uber,'Price Prediction':Price}
+PAGES={'About me':Home,'Uber':Uber,'Price Prediction':Price}
 def write_page(page):  # pylint: disable=redefined-outer-name
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
