@@ -70,34 +70,128 @@ def write():
     pipe=Pipeline(Input)
     Input2=[('scale',StandardScaler()),('polynomial',PolynomialFeatures(degree=2)) , ('model',LinearRegression())]
     Ploypipe=Pipeline(Input2)
-
+    lr=LinearRegression()
     #---------------------------------------------------------------------
     st.header("Linear Regression")
     st.write("InDependent varaibles - Highway-mpg")
     st.write("Dependent - Price")
+    if st.checkbox('Highway-mpg'):
+        st.header("InDependent varaibles - Highway-mpg")
+        X=data[['highway-mpg']]
+        Y=data['price']
+        lr.fit(X,Y)
+        Yhat=lr.predict(X)
+        st.write("Relationship between Price and Highway MPG is")
+        st.write("Price = intercept - coef* highway-mpg ")
+        #st.write("Price="+str(lr.intercept_)+"+"+str(lr.coef_[0])+"*highway-mpg")
+        sns.regplot(x="engine-size", y="price", data=data)
+        plt.ylim(0,)
+        st.pyplot()
+        #-----------------------------------------------------------------------------
+        st.header("Residual Plot")
+        sns.residplot(X,Y)
+        st.pyplot()
+        #--------------------------------------------------------------------------------------------
+        ax1 = sns.distplot(data['price'], hist=False, color="r", label="Actual Value")
+        sns.distplot(Yhat, hist=False, color="b", label="Fitted Values" , ax=ax1)
 
-    X=data[['highway-mpg']]
-    Y=data['price']
-    pipe.fit(X,Y)
-    Yhat=pipe.predict(X)
-    st.write("Relationship between Price and Highway MPG is")
-    st.write("Price = intercept - coef* highway-mpg ")
-    #st.write("Price="+str(pipe.intercept_)+"+"+str(pipe.coef_[0])+"*highway-mpg")
-    sns.regplot(x="engine-size", y="price", data=data)
-    plt.ylim(0,)
-    st.pyplot()
-    #-----------------------------------------------------------------------------
-    st.header("Residual Plot")
-    sns.residplot(data['highway-mpg'],data['price'])
-    st.pyplot()
-    #--------------------------------------------------------------------------------------------
+
+        plt.title('Actual vs Fitted Values for Price')
+        plt.xlabel('Price (in dollars)')
+        plt.ylabel('Proportion of Cars')
+
+        st.pyplot()
+        plt.close()
+
+
+    if st.checkbox('Engine size'):
+        st.header("InDependent varaibles - Engine size")
+        X=data[['engine-size']]
+        Y=data['price']
+        lr.fit(X,Y)
+        Yhat=lr.predict(X)
+        st.write("Relationship between Price and engine size is")
+        st.write("Price = intercept - coef* engine size ")
+        st.write("Price="+str(lr.intercept_)+"+"+str(lr.coef_[0])+"*highway-mpg")
+        sns.regplot(x="engine-size", y="price", data=data)
+        plt.ylim(0,)
+        st.pyplot()
+        #-----------------------------------------------------------------------------
+        st.header("Residual Plot")
+        sns.residplot(X,Y)
+        st.pyplot()
+        #--------------------------------------------------------------------------------------------
+    
+    
+    if st.checkbox('Horsepower'):
+        st.header("InDependent varaibles - horsepower")
+        X=data[['horsepower']]
+        Y=data['price']
+        lr.fit(X,Y)
+        '''p_val=lr.predict(np.array(102).reshape(-1,1))
+        st.write("30",p_val)
+        if st.checkbox('Show highway_mpg and prices'):
+            st.header('Compare')
+            st.write(data[['horsepower','price']])   ''' 
+        Yhat=lr.predict(X)
+        st.write("Relationship between Price and horsepower is")
+        st.write("Price = intercept - coef* highway-mpg ")
+        st.write("Price="+str(lr.intercept_)+"+"+str(lr.coef_[0])+"*highway-mpg")
+        sns.regplot(x="engine-size", y="price", data=data)
+        plt.ylim(0,)
+        st.pyplot()
+        #-----------------------------------------------------------------------------
+        st.header("Residual Plot")
+        sns.residplot(X,Y)
+        st.pyplot()
+        #--------------------------------------------------------------------------------------------
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     st.header("Multiple Linear Regression")
     st.write("InDependent varaibles - Highway-mpg horsepower curb-weight engine-size")
     st.write("Dependent - Price")
     Z = data[['horsepower', 'curb-weight', 'engine-size', 'highway-mpg']]
-    pipe.fit(Z, data['price'])
-    Yhat=pipe.predict(Z)
-    #st.write("Price="+str(pipe.intercept_)+"+"+str(pipe.coef_[0])+"(horsepower)"+str(pipe.coef_[1])+"(curb-weigh)"+str(pipe.coef_[2])+"(engine-size)"+str(pipe.coef_[3])+"(highway-mpg)")
+    lr.fit(Z, data['price'])
+    Yhat=lr.predict(Z)
+    #st.write("Price="+str(Ploypipe.intercept_)+"+"+str(Ploypipe.coef_[0])+"(horsepower)"+str(Ploypipe.coef_[1])+"(curb-weigh)"+str(Ploypipe.coef_[2])+"(engine-size)"+str(pipe.coef_[3])+"(highway-mpg)")
     #-------------------------------------------------------------------------------
 
     ax1 = sns.distplot(data['price'], hist=False, color="r", label="Actual Value")
@@ -130,4 +224,14 @@ def write():
     f = np.polyfit(x, y, 3)
     p = np.poly1d(f)
     PlotPolly(p, x, y, 'highway-mpg')
-    #-----------------------------------------------
+    #----------------------------------------------
+    st.header("Do predicted value make sense ?")
+    st.write("Lets predict Price Using Highway-mpg")
+    lr=LinearRegression()
+    lr.fit(data[['highway-mpg']],data['price'])
+    p_val=lr.predict(np.array(27.0).reshape(-1,1))
+    st.write("30",p_val)
+    if st.checkbox('Show highway_mpg and prices'):
+        st.header('Compare')
+        st.write(data[['price','highway-mpg']])    
+    
