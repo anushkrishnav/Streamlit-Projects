@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 DATE_COLUMN = 'date/time'
-DATA_URL = ('data.csv')
+DATA_URL = ('src/Data/uber.csv')
 def write():
     st.title('Uber pickup Statistics in NYC')
     @st.cache

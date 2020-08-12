@@ -12,7 +12,7 @@ def write():
     @st.cache
     def load_data():
         """Reads the data from the csv files , removes the rows with missing value and resets the index"""
-        data=pd.read_csv('clean_df.csv')
+        data=pd.read_csv('src/Data/CarPricedata.csv')
         data['price'] = pd.to_numeric(data['price'].str.replace('?', ''))
         data['horsepower'] = pd.to_numeric(data['horsepower'].str.replace('?', ''))
         data = data.dropna()
