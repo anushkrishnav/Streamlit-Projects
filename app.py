@@ -2,8 +2,9 @@ import streamlit as st
 import src.pages.Uber as Uber
 import src.pages.UsedCarPrice as Price
 import src.pages.Home as Home
+import src.pages.first as First
 
-PAGES={'About me':Home,'Uber':Uber,'Price Prediction':Price}
+PAGES={'About me':Home,'Uber':Uber,'Price Prediction':Price,'FIrst':First}
 def write_page(page):  # pylint: disable=redefined-outer-name
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
