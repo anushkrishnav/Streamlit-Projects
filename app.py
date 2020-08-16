@@ -17,7 +17,7 @@ def main():
     st.sidebar.title("Projects")
     choice=st.sidebar.radio("Explore the Projects below ?",tuple(PAGES.keys()))
     if choice ==None:
-        Home.write()
+        First.write()
     else:
         page=PAGES[choice]
         with st.spinner(f"Loading {choice} ..."):
