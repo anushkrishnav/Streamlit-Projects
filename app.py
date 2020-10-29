@@ -1,10 +1,9 @@
 import streamlit as st
-import src.pages.Uber as Uber
-import src.pages.UsedCarPrice as Price
-import src.pages.Home as Home
-import src.pages.first as First
+from src.pages.UsedCar import UsedCarPrice as Price
+from src.pages.Home import Home as Home
 
-PAGES={'FIrst':First,'About me':Home,'Uber':Uber,'Price Prediction':Price}
+
+PAGES={'About me':Home,'Price Prediction':Price}
 def write_page(page):  # pylint: disable=redefined-outer-name
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
@@ -17,7 +16,7 @@ def main():
     st.sidebar.title("Projects")
     choice=st.sidebar.radio("Explore the Projects below ?",tuple(PAGES.keys()))
     if choice ==None:
-        First.write()
+        Home.write()
     else:
         page=PAGES[choice]
         with st.spinner(f"Loading {choice} ..."):
