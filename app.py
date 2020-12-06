@@ -3,8 +3,9 @@ import src.pages.Uber as Uber
 import src.pages.UsedCarPrice as Price
 import src.pages.Home as Home
 import src.pages.first as First
+import src.CarSpeed.terrain as Terrain
 
-PAGES={'FIrst':First,'About me':Home,'Uber':Uber,'Price Prediction':Price}
+PAGES={'Crop Prediction':First,'About me':Home,'CarSpeedAutomation':Terrain,'Uber':Uber,'Price Prediction':Price}
 def write_page(page):  # pylint: disable=redefined-outer-name
     """Writes the specified page/module
     Our multipage app is structured into sub-files with a `def write()` function
@@ -14,6 +15,7 @@ def write_page(page):  # pylint: disable=redefined-outer-name
     # _reload_module(page)
     page.write()
 def main():
+    st.set_page_config(page_title='Anush Projects', page_icon = "src/CarSpeed/favicon.ico", layout="wide")
     st.sidebar.title("Projects")
     choice=st.sidebar.radio("Explore the Projects below ?",tuple(PAGES.keys()))
     if choice ==None:
