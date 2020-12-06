@@ -15,7 +15,7 @@ def write_page(page):  # pylint: disable=redefined-outer-name
     # _reload_module(page)
     page.write()
 def main():
-    st.set_page_config(page_title='Anush Projects', page_icon = "src/CarSpeed/favicon.ico", layout="wide")
+    st.set_page_config(page_title='Anush Projects', page_icon = "src/CarSpeed/favicon.ico")
     st.sidebar.title("Projects")
     choice=st.sidebar.radio("Explore the Projects below ?",tuple(PAGES.keys()))
     if choice ==None:
