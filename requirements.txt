@@ -79,7 +79,7 @@ threadpoolctl==2.1.0
 toml==0.10.2
 toolz==0.11.1
 tornado==6.1
-traitlets==5.0.5
+traitlets==4.3.2
 tzlocal==2.1
 urllib3==1.26.2
 validators==0.18.1
