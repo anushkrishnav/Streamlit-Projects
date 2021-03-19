@@ -6,7 +6,7 @@ attrs==20.3.0
 backcall==0.2.0
 base58==2.0.1
 beautifulsoup4==4.9.3
-bleach==3.2.1
+bleach==3.3.0
 blinker==1.4
 bs4==0.0.1
 cachetools==4.1.1
